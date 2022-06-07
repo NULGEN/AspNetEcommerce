@@ -1,0 +1,69 @@
+﻿<div class="container mt-3 mb-5">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Anasayfa</a></li>
+            <li class="breadcrumb-item"><a href="#">Kategori</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Kategori</li>
+        </ol>
+    </nav>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card card-theme">
+                <div class="card-header">Kategori Adı</div>
+                <div class="card-body">
+                    <h3>Alt Kategoriler</h3>
+                    <div class="list-group categories">
+                        <a href="#" class="list-group-item"><i class="fa fa-television"></i> Alt Kategori</a>
+                        <a href="#" class="list-group-item"><i class="fa fa-television"></i> Alt Kategori</a>
+                        <a href="#" class="list-group-item"><i class="fa fa-television"></i> Alt Kategori</a>
+                    </div>
+
+                    <h3 class="mt-4">Fiyat Aralığı</h3>
+                    <form>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox"> 100-200
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox"> 200-300
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="products bg-content">
+                Sırala
+                <a href="#" class="btn btn-outline-secondary">Çok Satanlar</a>
+                <a href="#" class="btn btn-outline-secondary">Yeni Ürünler</a>
+                <hr>
+                <div class="row">
+                    @if (!((List<Product>)ViewBag.Products).Any())
+                    {
+                        <div class="col-md-12 text-center">
+                            Listelenecek ürün bulunamadı!
+                        </div>
+                    }
+                    @foreach (Product product in ViewBag.Products)
+                    {
+                        <div class="col-md-3 product">
+                            <a asp-controller="Product" asp-action="Index" asp-route-id="@product.Id">
+                                <img src="@product.ImageUrl">
+                            </a>
+                            <p><a asp-controller="Product" asp-action="Index" asp-route-id="@product.Id">@product.Name</a></p>
+                            <p class="price">@product.Price ₺</p>
+                            <p><a href="#" class="btn btn-theme">Sepete Ekle</a></p>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

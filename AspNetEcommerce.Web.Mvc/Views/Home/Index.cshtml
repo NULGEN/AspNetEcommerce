@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@await Component.InvokeAsync("Slider")
+
+<div class="container">
+    <div class="products mb-4">
+        <div class="card card-theme">
+            <div class="card-header">Öne Çıkan Ürünler</div>
+            <div class="card-body">
+                @await Component.InvokeAsync("AnasayfaUrunler", new { listType = "OneCikan" })
+            </div>
+        </div>
+    </div>
+
+    <div class="products mb-4">
+        <div class="card card-theme">
+            <div class="card-header">Çok Satan Ürünler</div>
+            <div class="card-body">
+                @await Component.InvokeAsync("AnasayfaUrunler", new { listType = "CokSatan" })
+            </div>
+        </div>
+    </div>
+
+    <div class="products mb-4">
+        <div class="card card-theme">
+            <div class="card-header">İndirimli Ürünler</div>
+            <div class="card-body">
+               @await Component.InvokeAsync("AnasayfaUrunler", new { listType = "Indirimli" })
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+﻿<div class="row">
+    @if (!((List<Product>)ViewBag.Products).Any())
+    {
+        <div class="col-md-12 text-center">
+            Listelenecek ürün bulunamadı!
+        </div>
+    }
+    @foreach (Product product in ViewBag.Products)
+    {
+        <div class="col-md-3 product">
+            <a asp-controller="Product" asp-action="Index" asp-route-id="@product.Id">
+                <img src="@product.ImageUrl">
+            </a>
+            <p><a asp-controller="Product" asp-action="Index" asp-route-id="@product.Id">@product.Name</a></p>
+            <p class="price">@product.Price ₺</p>
+            <p><a href="#" class="btn btn-theme">Sepete Ekle</a></p>
+        </div>
+    }
+</div>

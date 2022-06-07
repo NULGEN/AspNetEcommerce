@@ -1,0 +1,40 @@
+﻿<!-- CATEGORIES -->
+<nav class="navbar navbar-light bg-light mb-2 border-bottom border-1 shadow-sm" id="categories">
+    <div class="container">
+        <ul class="nav nav-pills">
+            @foreach (Category category in ViewBag.MainCategories)
+            {
+                var subCategories = ((List<Category>)ViewBag.SubCategories).Where(e => e.ParentId == category.Id);
+
+                <li class="nav-item @(subCategories.Any() ? "dropdown" : "") me-4">
+                    <a class="nav-link @(subCategories.Any() ? "dropdown-toggle" : "")"
+                       data-bs-toggle="@(subCategories.Any() ? "dropdown" : "")"
+                       asp-controller="Category"
+                       asp-action="Index"
+                       asp-route-id="@category.Id">
+                        @category.Name
+                    </a>
+                    @if (subCategories.Any())
+                    {
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" asp-controller="Category" asp-action="Index" asp-route-id="@category.Id">
+                                    Tüm @category.Name Ürünleri
+                                </a>
+                            </li>
+                            @foreach (Category subcategory in subCategories)
+                            {
+                                <li>
+                                    <a class="dropdown-item" asp-controller="Category" asp-action="Index" asp-route-id="@subcategory.Id">
+                                        @subcategory.Name
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    }
+                </li>
+            }
+        </ul>
+    </div>
+</nav>
+<!-- CATEGORIES -->
